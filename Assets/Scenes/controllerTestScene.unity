@@ -303,6 +303,7 @@ GameObject:
   - 54: {fileID: 1883050343}
   - 65: {fileID: 1883050348}
   - 114: {fileID: 1883050345}
+  - 114: {fileID: 1883050349}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -356,11 +357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c776779416433459ef981307fc007f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  gravity: 10
-  maxVelocityChange: 10
-  canJump: 0
-  jumpHeight: 2
+  Speed: 10
+  MaxVelocityChange: 20
+  AddforceNumber: 500
 --- !u!33 &1883050346
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -392,3 +391,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1883050349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1883050342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b355956aa4147fd45a3cc37c7f39ba2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TestProjectile: {fileID: 400000, guid: a2fc0cb9b787c1e43a4ede86e7851a8b, type: 2}
+  ExitPoint: {fileID: 1883050347}
+  SpawnDistance: 1
+  InitialDirection: {x: 0, y: 1}
