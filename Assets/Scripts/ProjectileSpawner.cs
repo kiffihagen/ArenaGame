@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using Object = UnityEngine.Object;
 
 public class ProjectileSpawner : MonoBehaviour
 {
@@ -44,6 +46,12 @@ public class ProjectileSpawner : MonoBehaviour
         return angle;
     }
 
+    public static Vector2 Normalize(Vector2 v)
+    {
+        var m = Math.Max(Math.Abs(v.x), Math.Abs(v.y));
+        return new Vector2(v.x / m, v.y / m);
+    }
+
     public BaseProjectile SpawnProjectile(Object projectilePrefab, Vector3 spawnPosition, Vector2 direction)
     {
         //direction.
@@ -51,5 +59,10 @@ public class ProjectileSpawner : MonoBehaviour
         var position = spawnPosition + new Vector3(direction.x * SpawnDistance, 0, direction.y * SpawnDistance);
         Debug.Log("Spawning projectile at " + position + ", with rotation: " + rotation.eulerAngles);
         return (Instantiate(projectilePrefab, position, rotation) as Transform).gameObject.GetComponent<BaseProjectile>();
+    }
+
+    public BaseProjectile SpawnProjectile(Object projectilePrefab, Vector3 spawnPosition, Vector3 direction)
+    {
+        return SpawnProjectile(projectilePrefab, spawnPosition, new Vector2(direction.x, direction.z));
     }
 }
