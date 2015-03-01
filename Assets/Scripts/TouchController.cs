@@ -21,17 +21,22 @@ public class TouchController : MonoBehaviour
 	            Debug.Log("Touched position: " + touch.position + " of x:[0, " + Screen.width + "], y:[0, " + Screen.height + "]");
                 //var worldPosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0));
                 //Debug.Log("Touched world position: " + worldPosition);
-	            var ray = Camera.main.ScreenPointToRay(touch.position);
-	            var plane = new Plane(Vector3.up, transform.position);
-	            float distance;
-	            if (plane.Raycast(ray, out distance))
-	            {
-	                var pos = ray.GetPoint(distance);
-                    Debug.Log("World position: " + pos);
-                    _projectileSpawner.SpawnProjectile(_projectileSpawner.TestProjectile,
-                        _projectileSpawner.ExitPoint.position, pos.normalized);
-	            }
+	            ProcessTouchEvent(touch.position);
 	        }
 	    }
 	}
+
+    public void ProcessTouchEvent(Vector2 touchPosition)
+    {
+        var ray = Camera.main.ScreenPointToRay(touchPosition);
+        var plane = new Plane(Vector3.up, transform.position);
+        float distance;
+        if (plane.Raycast(ray, out distance))
+        {
+            var pos = ray.GetPoint(distance);
+            Debug.Log("World position: " + pos);
+            _projectileSpawner.SpawnProjectile(_projectileSpawner.TestProjectile,
+                _projectileSpawner.ExitPoint.position, pos.normalized);
+        }
+    }
 }
