@@ -31,13 +31,14 @@ public class AbilityStack : MonoBehaviour {
         _abilityCycleIndex = (_abilityCycleIndex + 1) % _abilities.Count;
     }
 
-    public void UseAbility()
+    public void UseAbility(Vector2 direction)
     {
-        _abilities[_abilityCycleIndex].Use();
+        _abilities[_abilityCycleIndex].Use(direction);
     }
 
     public void AddAbility(BaseAbility ability)
     {
         _abilities.Add(ability);
+        ability.Player = gameObject;
     }
 }
